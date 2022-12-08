@@ -32,6 +32,7 @@
               <%= post.errors.full_messages_for(:keywords).join(", ") %>
             </p>
           <% end %>
+          <%= form.file_field :images, multiple:true %>
         </div>
         <div>
           <%= form.submit class:"btn btn-primary col-12" %>

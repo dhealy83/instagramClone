@@ -2,42 +2,45 @@
   <%= form_with(model: post) do |form| %>
     <h1>New post</h1>
     <div>
-      <p style="hidden" 
-        <%= invalid = post.errors.include?(:title) %> />
-        <%= form.label :title, style: "display: block" %>
-        <%= form.text_field :title, class:"form-control" %>
-        <% if invalid %>
-          <p style="color:red">
-            <%= post.errors.full_messages_for(:title).join(", ") %>
-          </p>
-        <% end %>
-      </div>
-      <div>
-        <p style="hidden" 
-          <%= invalid = post.errors.include?(:description) %> 
-          <%= form.label :description, style: "display: block" %>
-          <%= form.text_field :description, class:"form-control"  %>
-          <% if invalid %>
-            <p style="color:red">
+      <% invalid = post.errors.include?(:title) %>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title, class:"form-control" %>
+      <% if invalid %>
+        <p style="color:red">
+          <%= post.errors.full_messages_for(:title).join(", ") %>
+        </p>
+      <% end %>
+    </div>
+    <div>
+      <%= form.text_field :user_id, type:"hidden", value: current_user.id %>
+    </div>
+    <div>
+      <%= form.text_field :email, type:"hidden", value: current_user.email %>
+    </div>
+    <div>
+      <% invalid = post.errors.include?(:description) %>
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_field :description, class:"form-control"  %>
+      <% if invalid %>
+        <p style="color:red">
           <%= post.errors.full_messages_for(:description).join(", ") %>
         </p>
       <% end %>
       <div>
-        <p style="hidden" 
-            <%= invalid = post.errors.include?(:keywords) %> />
-          <%= form.label :keywords, style: "display: block" %>
-          <%= form.text_field :keywords, class:"form-control"  %>
-          <% if invalid %>
-            <p style="color:red">
-              <%= post.errors.full_messages_for(:keywords).join(", ") %>
-            </p>
-          <% end %>
-          <%= form.file_field :images, multiple:true %>
-        </div>
-        <div>
-          <%= form.submit class:"btn btn-primary col-12" %>
-        </div>
-        <%= link_to "Back to posts", posts_path %>
+        <% invalid = post.errors.include?(:keywords) %>
+        <%= form.label :keywords, style: "display: block" %>
+        <%= form.text_field :keywords, class:"form-control"  %>
+        <% if invalid %>
+          <p style="color:red">
+            <%= post.errors.full_messages_for(:keywords).join(", ") %>
+          </p>
+        <% end %>
+        <%= form.file_field :images, multiple:true %>
       </div>
-    <% end %>
-  </div>
+      <div>
+        <%= form.submit class:"btn btn-primary col-12" %>
+      </div>
+      <%= link_to "Back to posts", posts_path %>
+    </div>
+  <% end %>
+</div>

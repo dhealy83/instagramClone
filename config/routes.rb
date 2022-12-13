@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
 
 # This setes up redirection after signing out.
 devise_scope :user do
@@ -9,6 +10,7 @@ end
   devise_for :users
 
   get 'home/about'
+  get 'posts/myposts'
   resources :posts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -13,6 +13,9 @@
           <%= link_to "About", home_about_path, class:"nav-link ms-3"%>
         </li>
         <% if user_signed_in? %>
+          <li class="">
+            <%= link_to "My Posts", posts_myposts_path, class:"nav-link ms-3" %>
+          </li>
           <li class="nav-item border-top border-secondary">
             <%= link_to "Edit Account", edit_user_registration_path, class:"nav-link ms-3", style:"border:none;" %>
           </li>

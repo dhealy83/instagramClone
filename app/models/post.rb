@@ -6,6 +6,10 @@ class Post < ApplicationRecord
 
     has_many_attached :images
 
+    belongs_to :user
+
+    has_many :comments
+
     class Link < ActiveRecord::Base
         belongs_to :user
         validates :user, presence: true

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  # Likes wont need a resource or a route.
+  resources :likes, only: [:create, :destroy]
   resources :comments
 
 # This sets up redirection after signing out.

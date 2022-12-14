@@ -8,12 +8,21 @@
   <p>
     <%= post.keywords %>
   </p>
-  <p>
-    <%= post.email %>
-  </p>
-  <p>
-    <%= link_to "", post.user, class:"post-link" %>
-  </p>
+  <% if user_signed_in? %>
+    <% like = current_user.likes.find_by(post: post) %>
+
+    <%# this renders the like button %>
+    <% if like.nil? %>
+    <%= button_to "Like", likes_path, params: {like: { post_id: post.id }}, method: :post %>
+
+    <%# This renders the unlike button. %>
+    <% else %>
+    <%= button_to "Unlike", like_path(like), method: :delete %>
+    <% end %>
+  <% end %>
+
+  <p> <%= post.likes.count %> Likes </p>
+  
   <% post.images.each do |image| %>
     <%= image_tag(image, style: "object-fit: cover; width: 300px; height: 600px") %>
   <%end %>

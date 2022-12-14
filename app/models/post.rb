@@ -10,6 +10,8 @@ class Post < ApplicationRecord
 
     has_many :comments
 
+    has_many :likes
+
     class Link < ActiveRecord::Base
         belongs_to :user
         validates :user, presence: true

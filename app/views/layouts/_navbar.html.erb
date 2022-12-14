@@ -1,11 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <%= link_to "Home", root_path, class:"navbar-brand ms-3"%>
+            <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, class:"ms-3", style:"width: 50px;" %>
+            <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="">
           <%= link_to "New Post", new_post_path, class:"nav-link ms-3" %>
         </li>
@@ -16,13 +20,15 @@
           <li class="">
             <%= link_to "My Posts", posts_myposts_path, class:"nav-link ms-3" %>
           </li>
-          <li class="nav-item border-top border-secondary">
+          <li class="">
+            <%= link_to "My Profile", current_user, class:"nav-link ms-3" %>
+          </li>
+          <li class="nav-item ">
             <%= link_to "Edit Account", edit_user_registration_path, class:"nav-link ms-3", style:"border:none;" %>
           </li>
           <li class="nav-item ">
             <%= link_to "Sign Out", destroy_user_session_path, class:"nav-link ms-3", style:"border:none;" %>
           </li>
-          <br class="dropdown-divider" />
         <% else %>
           <li class="nav-item border-top border-secondary">
             <%= link_to "Sign Up", new_user_registration_path, class:"nav-link ms-3" %>

@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   resources :comments
 
-# This setes up redirection after signing out.
+# This sets up redirection after signing out.
 devise_scope :user do
   get '/users', to: 'devise/registration#new'
   get '/users/password', to: 'devise/password#new'
   get '/users/sign_out' => 'devise/sessions#destroy'
 end
-  devise_for :users
+
+devise_for :users, controllers: {
+  registrations: 'users/registrations'
+}
+
+  resource :user, only: [:show]
 
   get 'home/about'
   get 'posts/myposts'

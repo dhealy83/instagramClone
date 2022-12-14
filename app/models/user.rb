@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
          has_many :posts
          has_many :comments
+         has_one_attached :avatar
 # This will creat a randomized id for the user.
          before_create :randomize_id
          private

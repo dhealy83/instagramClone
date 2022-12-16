@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
     @like = current_user.likes.new(like_params)
     if !@like.save
-      flash[:alert] = "You've already like this post"
+      flash[:alert] = "You already liked this post"
     end
     redirect_to root_path
   end
@@ -15,7 +15,6 @@ class LikesController < ApplicationController
   end
 
   def like_params
-
     params.require(:like).permit(:post_id)
   end
 end

@@ -11,12 +11,14 @@
         </p>
       <% end %>
     </div>
+    <% if user_signed_in? %>
     <div>
       <%= form.text_field :user_id, type:"hidden", value: current_user.id %>
     </div>
     <div>
       <%= form.text_field :email, type:"hidden", value: current_user.email %>
     </div>
+    <% end %>
     <div>
       <% invalid = post.errors.include?(:description) %>
       <%= form.label :description, style: "display: block" %>

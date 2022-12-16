@@ -7,7 +7,9 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
   end
+  def show
 
+   end
   # GET /posts/1 or /posts/1.json
   def show
     @comment = @post.comments.build
@@ -16,7 +18,6 @@ class PostsController < ApplicationController
   def myposts
     @posts = Post.all
   end
-
   # GET /posts/new
   def new
     @post = Post.new
@@ -72,6 +73,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :keywords, :user_id, :email, images: [])
+      params.require(:post).permit(:title, :description, :keywords, :user_id, images: [])
     end
 end
